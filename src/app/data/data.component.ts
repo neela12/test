@@ -29,25 +29,18 @@ export class DataComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.check);
   }
 
 
   onSubmit(form: FormGroup) {
+    
     let val = form.value;
-    console.log(form.value);
-
     if (val.name && val.mail) {
      this.Shopdata = { 'Name': val.name, 'mail': val.mail , 'address' : this.allAddress , 'subUsers' :  this.allSubUsers};
-      console.log(this.Shopdata);
-      console.log("Shopdata=" +JSON.stringify(this.Shopdata));
-    
     }
   }
 
   adAddress() {
-
-    console.log(this.myForm.controls);
     let val = this.myForm.value;
     if (val.locality && val.pincode && val.plotno) {
       this.obj = { 'Locality': val.locality, 'Pincode': val.pincode, 'plotno': val.plotno };
@@ -59,28 +52,28 @@ export class DataComponent implements OnInit {
       this.myForm.controls.plotno.setErrors(null);
       this.myForm.controls.locality.setErrors(null);
       this.myForm.controls.pincode.setErrors(null);
-      console.log(this.allAddress);
       this.check = false;
     }
 
   }
 
   show(eve) {
-  
     if (eve.checked) {
-      this.myForm.controls.plotno.setErrors(null);
-      console.log(this.myForm.controls);
+      this.myForm.controls.plotno.markAsUntouched();
+      this.myForm.controls.locality.markAsUntouched();
+      this.myForm.controls.pincode.markAsUntouched();
     }
-
   }
 
 
   show_Sub(eve) {
-   
+    if (eve.checked) {
+      this.myForm.controls.subName.markAsUntouched();
+      this.myForm.controls.subEmail.markAsUntouched();
+    }
   }
 
   adSubUsers() {
-
     let val = this.myForm.value;
     if (val.subName && val.subEmail) {
       this.obj = { 'name': val.subName, 'email': val.subEmail };
@@ -90,10 +83,10 @@ export class DataComponent implements OnInit {
       this.myForm.patchValue({ subEmail: '' });
       this.myForm.controls.subName.setErrors(null);
       this.myForm.controls.subEmail.setErrors(null);
-
     }
     this.check_sub = false;
   }
 
+  
 }
 

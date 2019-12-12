@@ -1,11 +1,9 @@
 <mat-card>
-
     <mat-card-title>
         Test Form
     </mat-card-title>
     <mat-card-content>
         <form class="example-form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-
             <div>
                 <mat-form-field class="example-full-width">
                     <input formControlName="name" matInput placeholder="Name">
@@ -14,102 +12,103 @@
                     <span *ngIf="!myForm.get('name').valid && myForm.get('name').touched">Please enter First Name</span>
                 </mat-error>
             </div>
-
             <div>
                 <mat-form-field class="example-full-width">
-                    <input formControlName="mail" matInput placeholder="Email Id">
+                    <input type="email" formControlName="mail" matInput placeholder="Email Id" email>
                 </mat-form-field>
                 <mat-error>
-                    <span *ngIf="!myForm.get('mail').valid && myForm.get('mail').touched"> Please enter Email Id</span>
+                    <span *ngIf="!myForm.get('mail').valid && myForm.get('mail').touched"> Please Enter Valid Email
+                        Id</span>
                 </mat-error>
             </div>
-
             <div>
-                <mat-checkbox [(ngModel)]="check" [ngModelOptions]="{standalone: true}" (change)='show($event)' value=''>Enter Address <span *ngIf ="allAddress.length > 0"class="cls"> {{allAddress.length}} </span> </mat-checkbox> 
+                <mat-checkbox [(ngModel)]="check" [ngModelOptions]="{standalone: true}" (change)='show($event)'
+                    value=''>Enter Address </mat-checkbox>
+                    <div *ngIf="allAddress.length > 0">
+                            <span  class="objlen"> {{allAddress.length}}
+                                </span> 
+                            <button  class="removeobj" mat-raised-button color="accent"
+                                    (click)="this.allAddress.pop()">Remove Address</button>
+                    </div>
 
             </div>
-           
-           
-
             <div *ngIf="check">
+                <div>
+                    <mat-form-field class="example-full-width">
+                        <input formControlName="plotno" matInput placeholder="Plot No">
+                    </mat-form-field>
+                    <mat-error>
+                        <span *ngIf="!myForm.get('plotno').valid && myForm.get('plotno').touched">
+                            Please
+                            Enter
+                            Plot Number</span>
+                    </mat-error>
+                </div>
 
-                
-                    <div>
-                        <mat-form-field class="example-full-width">
-                            <input formControlName="plotno" matInput placeholder="Plot No :">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!myForm.get('plotno').valid && myForm.get('plotno').touched">
-                                Please
-                                enter
-                                Plot Number</span>
-                        </mat-error>
-                    </div>
+                <div>
+                    <mat-form-field class="example-full-width">
+                        <input formControlName="locality" matInput placeholder="Locality">
+                    </mat-form-field>
+                    <mat-error>
+                        <span *ngIf="!myForm.get('locality').valid && myForm.get('locality').touched">Please
+                            Enter
+                            Locality</span>
+                    </mat-error>
+                </div>
 
-                    <div>
-                        <mat-form-field class="example-full-width">
-                            <input formControlName="locality" matInput placeholder="Locality">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!myForm.get('locality').valid && myForm.get('locality').touched">Please 
-                                enter
-                                Locality</span>
-                        </mat-error>
-                    </div>
+                <div>
+                    <mat-form-field class="example-full-width">
+                        <input formControlName="pincode" type="number" matInput placeholder="Pincode">
+                    </mat-form-field>
+                    <mat-error>
+                        <span *ngIf="!myForm.get('pincode').valid && myForm.get('pincode').touched">
+                            Please
+                            Enter Pincode</span>
+                    </mat-error>
+                </div>
 
-                    <div>
-                        <mat-form-field class="example-full-width">
-                            <input formControlName="pincode" matInput placeholder="Pincode">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!myForm.get('pincode').valid && myForm.get('pincode').touched">
-                                Please
-                                enter Pincode</span>
-                        </mat-error>
-                    </div>
-
-                    <button mat-raised-button color="accent" (click)="adAddress(check)">Add Address</button>
-                    <!-- <button type="button" (click)="reAddress()">Remove Address</button> -->
-
+                <button mat-raised-button color="accent"
+                    [disabled]="!myForm.get('pincode').valid || !myForm.get('locality').valid || !myForm.get('plotno').valid"
+                    (click)="adAddress()">Add Address</button>
+              
             </div>
-
             <div>
-                <mat-checkbox  [(ngModel)]="check_sub" [ngModelOptions]="{standalone: true}"  (change)='show_Sub($event)' value=''>Enter Sub User Details <span *ngIf ="allSubUsers.length > 0"class="cls"> {{allSubUsers.length}} </span> </mat-checkbox> 
+                <mat-checkbox [(ngModel)]="check_sub" [ngModelOptions]="{standalone: true}" (change)='show_Sub($event)'
+                    value=''>Enter Sub User Details  </mat-checkbox>
+                        <div *ngIf="allSubUsers.length > 0">
+                                <span  class="objlen">
+                                        {{allSubUsers.length}} </span>
+                                <button  class="removeobj" mat-raised-button color="accent"
+                                        (click)="this.allSubUsers.pop()">Remove SubUser</button>
+                        </div>
 
             </div>
-           
             <div *ngIf="check_sub">
-
                 <div>
                     <mat-form-field class="example-full-width">
                         <input formControlName="subName" matInput placeholder="Name">
                     </mat-form-field>
                     <mat-error>
-                        <span *ngIf="!myForm.get('subName').valid && myForm.get('subName').touched">Please enter Name</span>
+                        <span *ngIf="!myForm.get('subName').valid && myForm.get('subName').touched">Please Enter
+                            Name</span>
                     </mat-error>
                 </div>
-    
                 <div>
                     <mat-form-field class="example-full-width">
-                        <input formControlName="subEmail" matInput placeholder="Email">
+                        <input type="email" formControlName="subEmail" matInput placeholder="Email" email>
                     </mat-form-field>
                     <mat-error>
-                        <span *ngIf="!myForm.get('subEmail').valid && myForm.get('subEmail').touched">Please enter
+                        <span *ngIf="!myForm.get('subEmail').valid && myForm.get('subEmail').touched">Please Enter Valid
                             Email</span>
                     </mat-error>
                 </div>
-                <button mat-raised-button color="accent"  (click)="adSubUsers()">Add Sub Users</button>
+                <button mat-raised-button color="accent"
+                    [disabled]="!myForm.get('subEmail').valid || !myForm.get('subName').valid"
+                    (click)="adSubUsers()">Add Sub Users</button>
+               
             </div>
-           
-
-
-
-
-
-
-
-            <button mat-raised-button color="primary" type="submit" >Submit</button>
+            <button mat-raised-button color="primary" type="submit">Submit</button>
         </form>
-
     </mat-card-content>
 </mat-card>
+<mat-card>Shopdata= {{Shopdata | json}}</mat-card>
