@@ -1,0 +1,26 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+   
+  }
+
+  .example-form div{
+    margin: 14px;
+  }
+
+  .cls{
+    color : #3f51b5;
+    font-weight : 900;
+  }
+  /* .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+    background-color :blue !important;
+  } */
+
+  /* ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+    background-color: blue !important; 
+} */
